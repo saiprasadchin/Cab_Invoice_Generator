@@ -43,6 +43,8 @@ public class InvoiceServiceTest {
                 new Ride(0.1,1),
         };
         invoiceService.addRide("sai", rides);
+        InvoiceSummary summary = invoiceService.getInvoiceSummary("sai");
         InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,30.0);
+        Assert.assertEquals(expectedInvoiceSummary, summary);
     }
 }

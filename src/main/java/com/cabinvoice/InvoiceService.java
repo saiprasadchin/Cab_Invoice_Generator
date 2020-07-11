@@ -18,7 +18,12 @@ public class InvoiceService {
         return new InvoiceSummary(rides.length, totalFare);
     }
 
-    public void addRide(String sai, Ride[] rides) {
+    public void addRide(String userId, Ride[] rides) {
+        RideRepository.addRides(userId, rides);
+    }
 
+    public InvoiceSummary getInvoiceSummary(String userId) {
+        Ride[] rides = RideRepository.getRides(userId);
+        return this.calculateFare(rides);
     }
 }

@@ -17,4 +17,8 @@ public class InvoiceService {
         }
         return new InvoiceSummary(rides.length, totalFare);
     }
+
+    public void addRide(String sai, Ride[] rides) {
+
+    }
 }

@@ -1,13 +1,10 @@
 package com.cabinvoice;
 
 public class InvoiceService {
-    public static final double MINIMUM_COST_PER_KM = 10;
-    public static final double COST_PER_TIME = 1;
-    public static final int MINIMUM_FARE = 5;
 
     public double calculateFare(RideType type, double distance, int time) {
-        double totalFare = distance * MINIMUM_COST_PER_KM + time * COST_PER_TIME;
-        return Math.max(MINIMUM_FARE, totalFare);
+        double totalFare = distance * type.minimumCostPerKM + time * type.costPerTime;
+        return Math.max(type.minFare, totalFare);
     }
 
     public InvoiceSummary calculateFare(Ride[] rides) {

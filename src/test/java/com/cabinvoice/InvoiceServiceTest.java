@@ -8,7 +8,7 @@ public class InvoiceServiceTest {
     InvoiceService invoiceService = null;
 
     @Before
-    public void setUp() throws Exception{
+    public void setUp() {
         invoiceService = new InvoiceService();
     }
     @Test
@@ -55,6 +55,16 @@ public class InvoiceServiceTest {
         invoiceService.addRide("sai", rides);
         InvoiceSummary invoiceSummery = invoiceService.getInvoiceSummary("sai");
         InvoiceSummary expectedSummery = new InvoiceSummary(3, 760.5);
+        Assert.assertEquals(expectedSummery, invoiceSummery);
+    }
+
+    @Test
+    public void givenPremiumUserId_GenerateTotalFare_ShouldReturnInvoiceSummery() {
+        Ride[] rides = {new Ride(RideType.PREMIUM, 35.0, 45)
+                , new Ride(RideType.PREMIUM, 10.55, 30), new Ride(RideType.PREMIUM, 20, 30)};
+        invoiceService.addRide("Nikhil", rides);
+        InvoiceSummary invoiceSummery = invoiceService.getInvoiceSummary("Nikhil");
+        InvoiceSummary expectedSummery = new InvoiceSummary(3, 1193.25);
         Assert.assertEquals(expectedSummery, invoiceSummery);
     }
 }
